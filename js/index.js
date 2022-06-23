@@ -46,60 +46,13 @@ var wavesurfer = WaveSurfer.create({
     })
   ]
 });
-// wavesurfer.load(`data:audio/x-wav;base64,${base64String}`);
-// wavesurfer.on('ready', function () {
-//   wavesurfer.play();
-// });
 wavesurfer.on('play', function () {
   document.getElementById('ppb').innerHTML = 'Pause';
 });
 wavesurfer.on('pause', function () {
   document.getElementById('ppb').innerHTML = 'Play';
 });
-// REGIONS
-var re = wavesurfer.addRegion({
-  start: 0,
-  end: 26.622,
-  color: '#ffd70033',
-  resize: false,
-  drag: false
-});
-var re = wavesurfer.addRegion({
-  start: 28.962,
-  end: 33.246,
-  color: '#ffd70033',
-  resize: false,
-  drag: false
-});
-var re = wavesurfer.addRegion({
-  start: 33.474,
-  end: 37.278,
-  color: '#ffd70033',
-  resize: false,
-  drag: false
-});
-var re = wavesurfer.addRegion({
-  start: 37.506,
-  end: 42.462,
-  color: '#ffd70033',
-  resize: false,
-  drag: false
-});
-var re = wavesurfer.addRegion({
-  start: 42.786,
-  end: 47.07,
-  color: '#ffd70033',
-  resize: false,
-  drag: false
-});
-var re = wavesurfer.addRegion({
-  start: 47.298,
-  end: 60.606,
-  color: '#ffd70033',
-  resize: false,
-  drag: false
-});
-/**========= */
+
 document.addEventListener('keyup', (event) => {
   if (event.code === 'Space') {
     play();
@@ -166,6 +119,16 @@ const openFile = function (event) {
       data = response.data;
       console.log('done');
       console.log(data.results);
+      // 選染時間斷點 REGIONS
+      for (let i = 0; i < data.results.length; i++){
+        var re = wavesurfer.addRegion({
+          start: data.results[i].start,
+          end: data.results[i].end,
+          color: '#ffd70033',
+          resize: false,
+          drag: false
+        });
+      }
       wavesurfer.play();
     });
 };
