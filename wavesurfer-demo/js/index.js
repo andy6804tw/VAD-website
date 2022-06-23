@@ -1,3 +1,5 @@
+
+
 var labels = [];
 var wavesurfer = WaveSurfer.create({
   container: '#waveform',
@@ -76,26 +78,28 @@ document.addEventListener('keyup', (event) => {
 });
 function play() {
   wavesurfer.isPlaying() ? wavesurfer.pause() : wavesurfer.play();
+  console.log(wavesurfer.getCurrentTime());
 }
+wavesurfer.drawer.on('click', function (e) {
+  console.log(wavesurfer.getCurrentTime());
+});
 
-// function send() {
-//   const audioFile = document.getElementById('audioFile').files[0];
+// 持續監控目前時間
+wavesurfer.on('audioprocess', function () {
+  if (wavesurfer.isPlaying()) {
+    const totalTime = wavesurfer.getDuration();
+    const  currentTime = wavesurfer.getCurrentTime();
+    const  remainingTime = totalTime - currentTime;
 
-//   var reader = new FileReader();
-//   reader.onload = function () {
-//     var arrayBuffer = reader.result;
-
-//     var base64str = btoa(arrayBuffer);
-//     wavesurfer.load(`data:audio/wav;base64,${base64str}`);
-//     //   document.getElementById("base64textarea").value  = 'data:audio/wav;base64,' + base64str;
-//   };
-
-//   reader.readAsBinaryString(audioFile);
-// }
+    document.getElementById('time-total').innerText = `總時間：${totalTime.toFixed(1)}`;
+    document.getElementById('time-current').innerText = `現在時間：${currentTime.toFixed(1)}`;
+    document.getElementById('time-remaining').innerText = `剩餘時間：${remainingTime.toFixed(1)}`;
+  }
+});
 
 const openFile = function (event) {
-    const input = event.target;
-    const reader = new FileReader();
+  const input = event.target;
+  const reader = new FileReader();
 
   reader.onload = function () {
     const arrayBuffer = reader.result;

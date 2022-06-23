@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- File upload (wav) -->
+    <section style="max-width: 300px">
+        <label class="label">音檔上傳</label>
+        <input type="file" id="audioFile" onchange='openFile(event)'/>
+        <!-- <input type="submit" onclick="send()"> -->
+    </section>
+
+    <br>
+    <div id="waveform"></div>
+    <div id="timeline"></div>
+    <div id="time-total">總時間：</div>
+    <div id="time-current">現在時間：</div>
+    <div id="time-remaining">剩餘時間：</div>
+    <div id="text">辨識結果</div>
+    <br>
+    <div><button onclick="play()" id="ppb">Play</button>
+
+
+    <!-- wavesurfer -->
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js"></script>
+    <!-- HTTP Request -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
