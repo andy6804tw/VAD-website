@@ -110,7 +110,7 @@ const openFile = function (event) {
   console.log('upload');
   // 上傳 Image 檔案
   axios
-    .post(`https://27a0-140-109-17-47.ngrok.io/vad/test`, formData, {
+    .post(`https://vad-api.herokuapp.com/vad/file`, formData, {
       headers: {
         'content-type': 'mutipart/form-data'
       }
@@ -120,8 +120,8 @@ const openFile = function (event) {
       console.log('done');
       console.log(data.results);
       // 選染時間斷點 REGIONS
-      for (let i = 0; i < data.results.length; i++){
-        var re = wavesurfer.addRegion({
+      for (let i = 0; i < data.results.length; i++) {
+        const re = wavesurfer.addRegion({
           start: data.results[i].start,
           end: data.results[i].end,
           color: '#ffd70033',
