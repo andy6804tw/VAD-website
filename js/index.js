@@ -110,7 +110,7 @@ const openFile = function (event) {
   console.log('upload');
   // 上傳 Image 檔案
   axios
-    .post(`https://vad-api.herokuapp.com/vad/file`, formData, {
+    .post(`http://1a41-140-109-17-44.ngrok.io/vad/file`, formData, {
       headers: {
         'content-type': 'mutipart/form-data'
       }
