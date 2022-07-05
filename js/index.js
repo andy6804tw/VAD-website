@@ -110,7 +110,7 @@ const openFile = function (event) {
   console.log('upload');
   // 上傳 Image 檔案
   axios
-    .post(`http://1a41-140-109-17-44.ngrok.io/vad/file`, formData, {
+    .post(`https://1a41-140-109-17-44.ngrok.io/vad/file`, formData, {
       headers: {
         'content-type': 'mutipart/form-data'
       }
@@ -119,6 +119,8 @@ const openFile = function (event) {
       data = response.data;
       console.log('done');
       console.log(data.results);
+      // 顯示 DOM
+      document.getElementById('sectionResult').classList.remove('d-none');
       // 選染時間斷點 REGIONS
       for (let i = 0; i < data.results.length; i++) {
         const re = wavesurfer.addRegion({
